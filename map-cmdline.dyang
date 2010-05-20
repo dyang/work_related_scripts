@@ -1,0 +1,4 @@
+changeset = '<changeset>\n<rev>{node}</rev>\n<author>{author|escape}</author>\n<date>{date|date}</date>\n<desc>{desc}</desc>\n<files>\n<modified>\n{file_mods}</modified>\n<added>\n{file_adds}</added>\n<deleted>\n{file_dels}</deleted>\n</files>\n</changeset>'
+file_mod = '<file>{file_mod|escape}</file>\n'
+file_add = '<file>{file_add|escape}</file>\n'
+file_del = '<file>{file_del|escape}</file>\n'
