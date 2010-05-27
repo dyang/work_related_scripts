@@ -3,8 +3,17 @@
 
 # Connection specific environment settings
 # Please modify the following two env variables to fit your environment
-$env:P4PORT = "FAKEDEPORT:1666"
-$env:P4CLIENT = "FAKECLIENT"
+$env:P4PORT = "NOVP4P01:1666"
+$env:P4CLIENT = "Vault"
+
+# Test p4 connection
+p4 info
+if ($? -ne $True)
+{
+    Write-Host "Unable to connect to p4" -foregroundcolor red
+    return
+}
+
 
 $log = hg log -r tip --style dyang
 $logXml = [xml]$log
@@ -15,25 +24,25 @@ $spec = p4 change -o | out-string
 $change = $spec.replace("<enter description here>", $desc) | p4 change -i | out-string
 $changeNumber = $change.Split(' ')[1]
 
-echo "Editing files..."
+Write-Host "Editing files..." -foreground yellow
 foreach ($mod in $logXml.SelectNodes("changeset/files/modified/file"))
 {
     p4 edit -c $changeNumber $mod.InnerText
 }
 
-echo "Adding files..."
+Write-Host "Adding files..." -foreground yellow
 foreach ($mod in $logXml.SelectNodes("changeset/files/added/file"))
 {
     p4 add -c $changeNumber $mod.InnerText
 }
 
-echo "Deleting files..."
+Write-Host "Deleting files..." -foreground yellow
 foreach ($mod in $logXml.SelectNodes("changeset/files/deleted/file"))
 {
     p4 delete -c $changeNumber $mod.InnerText
 }
 
-echo "Describing change $changeNumber..."
+Write-Host "Describing change $changeNumber..." -foreground yellow
 p4 describe $changeNumber
 
-echo "Done"
+Write-Host "Done" -foreground green
