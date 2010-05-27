@@ -27,5 +27,10 @@ function hgs
 
 function qbk
 {
-  $env:userprofile\github\work_related_scripts\backup-q.ps1 
+  powershell ${env:userprofile}\github\work_related_scripts\backup-q.ps1
+}
+
+function p4co
+{
+  powershell ${env:userprofile}\github\work_related_scripts\batch-checkout.ps1
 }
