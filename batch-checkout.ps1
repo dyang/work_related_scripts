@@ -1,4 +1,4 @@
-﻿# Automatically create a pending changelist in P4 based on hg qtip
+﻿# Automatically create a pending changelist in P4 based on hg tip
 # including description and updated files (modified, added, deleted)
 
 # Connection specific environment settings
@@ -7,6 +7,7 @@ $env:P4PORT = "NOVP4P01:1666"
 $env:P4CLIENT = "Vault"
 
 # Test p4 connection
+Write-Host "Testing p4 connection..." -foregroundcolor yellow
 p4 info
 if ($? -ne $True)
 {
