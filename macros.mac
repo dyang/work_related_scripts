@@ -1,0 +1,17 @@
+[cmd.exe]
+    ls=dir $*
+    ws=cd /d d:\ws\main\sources
+    lib=cd /d D:\ws\main\sources\lib\Debug
+    a=gvim "%userprofile%\macros.mac"
+    reload=doskey /macrofile="%userprofile%\macros.mac"
+    aa=doskey /macros:all
+    record=Connectivity.VaultPro.exe /record=Record\$1.autoscr /recordOpts=$2
+    replay=Connectivity.VaultPro.exe /replay=Record\$1.autoscr /replayResult=Replay\$1.autores /replayChkCmpt /replayOpts=$2
+    restore=Connectivity.ADMSConsole.exe -Orestore -B"$1"  -VUadministrator -DBUsa -DBPpassword -L"C:\temp\ADMSLog.txt"
+    migrate=Connectivity.ADMSConsole.exe -Omigrate  -VUadministrator -DBUsa -DBPpassword -L"c:\temp\ADMSLog.txt"
+    ps=gvim .hg\patches\series
+    qbk=PowerShell "D:\hg-backup\backup-q.ps1"
+    vr=groovy %userprofile%\github\work_related_scripts\automation_project\view_recording.groovy $* 
+
+
+
